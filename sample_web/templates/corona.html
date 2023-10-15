@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <!-- 테이블의 제목 -->
+        <tr>
+            {% for c in col %}
+            <th>{{ c }}</th>
+            {% endfor %}
+        </tr>
+        {% for i in range(cnt) %}
+            <tr>
+                {% for c in col %}
+                    <td>{{ data[i][c] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>
