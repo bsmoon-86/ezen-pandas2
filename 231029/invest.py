@@ -12,6 +12,8 @@ class Invest:
         self.col = _col
         self.start = _start
         self.end = _end
+        self.start = datetime.strptime(self.start, '%Y%m%d').isoformat()
+        self.end = datetime.strptime(self.end, '%Y%m%d').isoformat()
 
     def buyandhold(self):
         # df에 columns에 Date가 존재한다면 Date를 인덱스로 변환
@@ -19,8 +21,6 @@ class Invest:
             self.df = self.df.set_index('Date')
         # index를 시계열 데이터로 변경 (to_datetime(Series데이터, format=Series데이터의 폼))
         self.df.index = pd.to_datetime(self.df.index, format='%Y-%m-%d')
-        self.start = datetime.strptime(self.start, format='%Y%m%d').isoformat()
-        self.end = datetime.strptime(self.end, format='%Y%m%d').isoformat()
         # 결측치, 무한대, 음의 무한대 값을 제외시킨다. 
         self.df = self.df.loc[~self.df.isin([np.nan, np.inf, -np.inf]).any(axis=1)]
         # 기준이 되는 컬럼을 제외하고 나머지 컬럼을 제거 
@@ -40,8 +40,6 @@ class Invest:
             self.df = self.df.set_index('Date')
         # index를 시계열 데이터로 변경 (to_datetime(Series데이터, format=Series데이터의 폼))
         self.df.index = pd.to_datetime(self.df.index, format='%Y-%m-%d')
-        self.start = datetime.strptime(self.start, format='%Y%m%d').isoformat()
-        self.end = datetime.strptime(self.end, format='%Y%m%d').isoformat()
         # 결측치, 무한대, 음의 무한대 값을 제외시킨다. 
         self.df = self.df.loc[~self.df.isin([np.nan, np.inf, -np.inf]).any(axis=1)]
         # 기준이 되는 컬럼을 제외하고 나머지 컬럼을 제거 
